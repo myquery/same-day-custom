@@ -1,34 +1,33 @@
-# Vue Tutorial
+# Same Custom Day 
 
-We're going to create a small application with Vue. 
+A simple product delivery app to display product and show order details. 
 
 ### [Read the tutorial](https://taniarascia.com/getting-started-with-vue) | [View the demo](https://taniarascia.github.io/vue-tutorial)
 
 ## Purpose
 
-The app will be a simple employee database and we'll learn:
+The app will be a simple product delivery app:
 
-- How to set up Vue
-- The anatomy of a Vue file
-- How to work with data, methods, conditional statements, and events in Vue
-- How to create, update, view, and delete users (employees) from the system
-- How to make API calls for each of the above actions
-- How to use tables, forms, and form validation
-- How to host a Vue build on GitHub pages
+## It contains:
+- A Navigation Header with user Profile Image
+- A Collapisble Sidebar Menu
+- A footer that will be consistent across pages
+- A product/Order display interface
+
 
 ## Installation
 
 ```
-git clone https://github.com/taniarascia/vue-tutorial
-cd vue-tutorial
-yarn
-yarn serve
+git clone https://github.com/myquery/same-day-custom
+cd same-day-custom
+npm install
+npm runserve
 ```
 
 ## Author
 
-- [Tania Rascia](https://www.taniarascia.com)
+- [Ibe Arua]
 
 ## License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is a test interview for same day custom for a position of frontend developer.
