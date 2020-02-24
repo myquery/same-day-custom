@@ -2,8 +2,6 @@
 
 A simple product delivery app to display product and show order details. 
 
-### [Read the tutorial](https://taniarascia.com/getting-started-with-vue) | [View the demo](https://taniarascia.github.io/vue-tutorial)
-
 ## Purpose
 
 The app will be a simple product delivery app:
