@@ -9,8 +9,8 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes: [
-    { path: '/order', component: ProductionHouse },
-    { path: '/', component: OrderContainer }
+    { path: '/', component: ProductionHouse },
+    { path: '/order', component: OrderContainer }
   ]
 })
 

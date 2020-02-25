@@ -1,9 +1,11 @@
 <template>
   <div id="order-container" class="layout">
-    <div class="production ">
+    <div class="production">
       <div class="production-header">
         <div class="logo">
-          <img src="../assets/right-arrow.svg" class="arrow" />
+          <router-link to="/">
+            <img src="../assets/right-arrow.svg" class="arrow" />
+          </router-link>
           <p>Back</p>
           <img src="../assets/product.svg" class="product-logo" />
           <h1>Production House</h1>
@@ -21,9 +23,9 @@
           </p>
         </div>
       </div>
-
+      <!-- <div class="container-flex"> -->
       <div class="order-summary">
-        <div class="order-summary-details">
+        <div class="order-summary-details" id="no-borderline">
           <p class="order-summary-detail-item-one">
             <span>
               <img src="../assets/shopping-cart.svg" />
@@ -48,8 +50,11 @@
         </div>
         <div class="order-summary-details">
           <p class="order-summary-detail-item-one">Rush Option</p>
-          <p class="order-summary-detail-item-two">
-            <span></span>Rush
+          <p class="order-summary-detail-item-two grid-lines">
+            <span>
+              <img src="../assets/right-arrow.svg" class="arrow-green" />
+            </span>
+            <span>Rush</span>
           </p>
         </div>
         <div class="order-summary-details">
@@ -59,13 +64,17 @@
         <div class="order-summary-details">
           <p class="order-summary-detail-item-one">Requested By</p>
           <p class="order-summary-detail-item-two">28-june-2017</p>
-          <p class="order-summary-detail-item-two">Time Left 10:00:00</p>
+          <p class="order-summary-detail-item-two request-time">
+            Time Left
+            <span>10:00:00</span>
+          </p>
         </div>
         <div class="order-summary-details">
           <p class="order-summary-detail-item-one">Shipped or Picked Date</p>
           <p class="order-summary-detail-item-two">28-june-2017</p>
         </div>
       </div>
+      <!-- </div> -->
       <div class="production-table">
         <div class="production-table-header">
           <div class="all">
@@ -74,26 +83,34 @@
               <span>126</span>
             </a>
           </div>
-          <div class="awaiting">
-            <a href="#">
-              Awaiting Products
-              <span>10</span>
-            </a>
+          <div>
+            <p><b>History / Notes</b></p>
           </div>
 
-          <div></div>
-          <div>
-            <button>Print Worksheet</button>
-          </div>
-          <div>
+            <div class="worksheet">
             <select>
-              <option>Mark as Completed</option>
+              <option>Worksheet</option>
             </select>
           </div>
           <div>
-            <button>Save</button>
+            <button>Print</button>
+          </div>
+       
+          <div>
+            <button><img src="../assets/file.png"/>Add Note</button>
+          </div>
+             <div class="category">
+            <select>
+              <option>Complete Production</option>
+            </select>
           </div>
         </div>
+        <div class="order-banner-header">
+          <div class="banner-label">Products</div>
+          <div class="banner-download"> <button>Download Artwork</button></div>
+
+        </div>
+
         <div class="product-gallery">
           <figure>
             <img src="../assets/product-front-large.png" />
@@ -167,42 +184,7 @@
                 <p>2 to 5</p>
               </td>
             </tr>
-            <tr class="product-row">
-              <td>
-                <input type="checkbox" />
-              </td>
-              <td width="100px">#232JODJSDKN2</td>
-              <td width="100px">#232JODJSDKN2</td>
-              <td>
-                <div class="product">
-                  <img src="../assets/product-cloth.png" />
-                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                </div>
-              </td>
-              <td>
-                <span class="product-color">Royal</span>
-              </td>
-              <td>L X 4</td>
-              <td>DTD Print</td>
-              <td width="100px">
-                <div class="product-delivery">
-                  <img src="../assets/clock.svg" />
 
-                  <p>Rush Shopping</p>
-                </div>
-              </td>
-              <td>
-                <p width="150px">23 - June, 2019</p>
-                <p class="product-time">
-                  <span>Time Life</span>
-                  <span style="color:green">10:00:00</span>
-                </p>
-              </td>
-              <td width="50px" class="product-status">
-                <p>Running</p>
-                <p>2 to 5</p>
-              </td>
-            </tr>
           </tbody>
         </table>
       </div>
@@ -228,7 +210,7 @@ export default {
   grid-template-columns: 1fr;
   grid-template-rows: auto auto auto auto;
   grid-row-gap: 1rem;
-  background: #f4f7f6;
+  background: #fcfcfc 0% 0% no-repeat padding-box;
   padding: 2rem 1.5rem;
   height: auto;
 }
@@ -265,13 +247,15 @@ export default {
 
 .order-summary {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1.5fr 1fr 0.7fr 1fr 0.8fr;
   background: #ffffff;
-  padding: 15px;
-  -webkit-box-shadow: 2px 1px 50px #0000000f !important;
-  -moz-box-shadow: 2px 1px 50px #0000000f !important;
-  box-shadow: 2px 1px 50px #0000000f !important;
+  padding: 0 15px;
+  -webkit-box-shadow: 2px 1px 10px #0000000f !important;
+  -moz-box-shadow: 2px 1px 10px #0000000f !important;
+  box-shadow: 2px 1px 10px #0000000f !important;
   border-radius: 5px;
+  max-width: 100%;
+  padding-top: 20px;
 }
 .order-summary-detail-item-one {
   color: #333;
@@ -290,10 +274,16 @@ export default {
   /* margin-left:30px; */
 }
 
+.grid-lines {
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
 .order-summary-details {
   height: 100px;
   position: relative;
-  margin: 5px;
+  padding: 10px 5px;
+  text-align: justify;
 }
 .order-summary-details::after {
   content: "";
@@ -303,12 +293,30 @@ export default {
   top: 25px;
   margin: 0px -10px;
 }
-
+#no-borderline {
+  border-right: none !important;
+}
 .product-gallery {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding: 10px;
   text-align: center;
+}
+
+.order-summary-detail-item-two > span > select {
+  outline: none;
+  border: none;
+  color: #1e8406;
+  font-size: 0.6rem;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.container-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: vh;
 }
 /* .production {
   display: grid;
@@ -320,10 +328,10 @@ export default {
  
 } */
 
-.layout{
+.layout {
   display: flex;
   justify-content: center;
-  align-items: center
+  align-items: center;
 }
 .logo {
   display: grid;
@@ -343,6 +351,18 @@ export default {
   padding: 10px;
   border-radius: 50%;
   justify-self: flex-end;
+  margin-top: 10px;
+}
+
+.arrow-green {
+  display: flex;
+  align-self: center;
+  width: 40%;
+  background: darkgreen;
+  padding: 5px;
+  border-radius: 50%;
+  justify-self: flex-end;
+  /* margin-top:10px; */
 }
 .arrow:hover {
   background: #97c8f8;
@@ -365,7 +385,7 @@ h1 {
 .production-header {
   display: grid;
   grid-template-columns: auto;
- 
+
   margin: 0;
   height: 50px;
 }
@@ -378,7 +398,6 @@ h1 {
   padding: 0px 10px;
   height: 40px;
 }
-
 
 .production-header .search input {
   background: #eeeeee;
@@ -399,9 +418,9 @@ h1 {
 }
 
 .production-table {
-  -webkit-box-shadow: 2px 1px 50px #0000000f !important;
-  -moz-box-shadow: 2px 1px 50px #0000000f !important;
-  box-shadow: 2px 1px 50px #0000000f !important;
+  -webkit-box-shadow: 2px 1px 10px #0000000f !important;
+  -moz-box-shadow: 2px 1px 10px #0000000f !important;
+  box-shadow: 2px 1px 10px #0000000f !important;
   border-radius: 5px;
   padding: 15px;
   background: #fff;
@@ -409,15 +428,28 @@ h1 {
 }
 .production-table-header {
   display: grid;
-  grid-template-columns: 1fr 40% 1fr 1fr 1fr 0.4fr;
+  grid-template-columns: 1.6fr 40% 0.7fr 1fr 1.3fr 0.4fr;
   grid-column-gap: 5px;
   font-size: 0.8rem;
   margin-bottom: -16px;
+  height: 45px;
+  border-bottom:1px solid #ccc;
 }
 
-.production-table-header .all {
+.production-table-header button > img{
+  width: 15%;
   display: flex;
   align-self: center;
+  padding: 0 5px
+}
+
+.production-table-header button {
+  
+  font-size: 0.7rem;
+}
+.production-table-header .all {
+  display: flex;
+  align-self:flex-start;
   padding: 6px 0 !important;
   margin-bottom: 0.4rem;
 }
@@ -642,5 +674,95 @@ tbody > tr td input {
   line-height: 5px;
   font-weight: bold;
   color: #1e8406;
+}
+
+.request-time {
+  color: #ccc;
+  font-size: 0.7rem;
+}
+
+.request-time > span {
+  color: darkgreen;
+  font-size: 0.7rem;
+}
+.category{
+    background: #007bff;
+  text-align: center;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  padding: 0px 10px;
+  height: 33px;
+
+}
+
+.category > select{
+
+  color: #fff;
+  
+
+}
+
+.category > select:after{
+  content: '';
+  color: #fff;
+  
+
+}
+
+.worksheet{
+  
+  text-align: center;
+  border-radius: 5px;
+  border: none;
+ 
+  padding: 0px 10px;
+  height: 33px;
+ 
+
+}
+
+.worksheet > select{
+
+  color: #1e8406;
+   font-weight: bold;
+  
+
+}
+
+.worksheet > select:after{
+  content: '';
+  color: #333;
+  width: 40%;
+  
+
+}
+.order-banner-header{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 10px;
+  background: #EEEEEE;
+  margin: 40px 0px 10px -15px;
+}
+
+.order-banner-header button{
+border:1px solid #529ded;
+padding: 10px;
+color: #007bff;
+font-weight: bold;
+border-radius: 5px;
+}
+
+.banner-label{
+  display: flex;
+  align-self: center;
+  font-weight: bold;
+  padding-left: 15px;
+}
+
+.banner-download{
+  display: flex;
+  align-self: center;
+  justify-self: flex-end;
 }
 </style>

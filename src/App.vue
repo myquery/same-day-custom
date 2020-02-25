@@ -1,14 +1,14 @@
 <template>
-  <div id="app" class="container">
+  <div id="app" :class="getExpand">
     <header class="header">
       <header-container />
     </header>
     <aside class="sidebar">
-      <sidebar-container @openNav="openRootNav"/>
+      <sidebar-container @isClicked="openRootNav($event)" />
     </aside>
     <main class="main">
       <!-- <production-house /> -->
-        <router-view></router-view>
+      <router-view></router-view>
     </main>
 
     <!-- <employee-form @add:employee="addEmployee" />
@@ -18,68 +18,75 @@
       @edit:employee="editEmployee"
     />-->
     <footer class="footer">
-      <footer-container/>
+      <footer-container />
     </footer>
   </div>
 </template>
 
 <script>
-import EmployeeTable from "@/components/EmployeeTable.vue";
-import EmployeeForm from "@/components/EmployeeForm.vue";
-import ProductionHouse from "@/components/ProductionHouse.vue";
+// import EmployeeTable from "@/components/EmployeeTable.vue";
+// import EmployeeForm from "@/components/EmployeeForm.vue";
+// import ProductionHouse from "@/components/ProductionHouse.vue";
 import HeaderContainer from "@/components/HeaderContainer.vue";
 import FooterContainer from "@/components/FooterContainer.vue";
 import SidebarContainer from "@/components/SidebarContainer.vue";
-import OrderContainer from "@/components/OrderContainer.vue";
-
+// import OrderContainer from "@/components/OrderContainer.vue";
 
 export default {
   name: "app",
-  props: ['gridline'],
+  props: ["gridline"],
   components: {
-    EmployeeTable,
-    EmployeeForm,
-    ProductionHouse,
+    // EmployeeTable,
+    // EmployeeForm,
+    // ProductionHouse,
     HeaderContainer,
     FooterContainer,
-    SidebarContainer,
-    OrderContainer
+    SidebarContainer
+    // OrderContainer
   },
   data() {
     return {
       employees: [],
-      gridline: '--gridline'
+
+      expanded: true,
+      gridTemplateChange: "container",
+      gridTemplateExpanded: "container-expanded",
+ 
+
+      // gridline: '--gridline'
     };
   },
 
-  computed: {
-   gridline(){
-     return this.gridline
-   }
-  },
+  // computed: {
+  //  gridline(){
+  //    return this.gridline
+  //  }
+  // },
 
   mounted() {
     this.getEmployees();
-
   },
 
+  computed: {
+    getExpand() {
+      return this.expanded ? "container" : "container-expanded";
+    },
+
+
+
+  },
   methods: {
+    openRootNav() {
+     // this.getTransition();
+      this.expanded = !this.expanded;
+     
+    },
 
-         openRootNav(event) {
-           
-  const container = this.$el.querySelector(".container");
-container.style.setProperty(gridline, "15% 85%");
-console.log(container)
-console.log(event)
-
-
-},
-
-/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
-closeNav() {
-  document.getElementById("mySidebar").style.width = "0";
-  document.getElementById("main").style.marginLeft = "0";
-},
+    /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+    closeNav() {
+      document.getElementById("mySidebar").style.width = "0";
+      document.getElementById("main").style.marginLeft = "0";
+    },
 
     async getEmployees() {
       try {
@@ -144,8 +151,9 @@ closeNav() {
 </script>
 
 <style>
-:root{
-   --grid-line: 5% 95%;
+:root {
+  --grid-line: 5% 95%;
+  --grid-expanded: 18.9% 81.1%;
 }
 /* button {
   background: #009435;
@@ -165,13 +173,32 @@ button:focus {
   height: vh;
   font-family: Arial, Helvetica, sans-serif;
   display: grid;
-  grid-template-columns: var( --grid-line);
- grid-auto-rows: auto auto auto;
+  grid-template-columns: var(--grid-line);
+  grid-auto-rows: auto auto auto;
   grid-template-areas:
     "sidebar header"
     "sidebar main"
     "sidebar footer";
-      /* margin-left: -150px; */
+  /* margin-left: -150px; */
+}
+
+.container-expanded {
+  max-width: 100%;
+  width: 100%;
+  height: vh;
+  font-family: Arial, Helvetica, sans-serif;
+  display: grid;
+  grid-template-columns: var(--grid-expanded);
+  grid-auto-rows: auto auto auto;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main"
+    "sidebar footer";
+  /* margin-left: -150px; */
+}
+
+.transit {
+  transition: width 5s;
 }
 
 .header {
@@ -187,15 +214,12 @@ button:focus {
   background: #007bff;
   height: vh;
   /* position: absolute; */
-
 }
 
-.footer{
+.footer {
   grid-area: footer;
   position: relative;
- 
-  
-  
+  align-self: flex-end;
 }
 .main {
   grid-area: main;

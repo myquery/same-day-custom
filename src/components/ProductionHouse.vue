@@ -66,7 +66,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="product-row" >
+            <tr class="product-row" @click="goToOrder">
                <!-- <router-link to="/order"> -->
               <td>
                 <input type="checkbox" />
@@ -105,7 +105,7 @@
               <!-- </router-link> -->
             </tr>
          
-          <tr class="product-row">
+          <tr class="product-row" @click="goToOrder">
               <td>
                 <input type="checkbox" />
               </td>
@@ -163,6 +163,13 @@ export default {
   //   "footer-container" : FooterContainer
   // }
 
+  methods:{
+  
+  goToOrder(){
+    return this.$router.push('order') 
+  }
+  }
+
   
 };
 </script>
@@ -173,7 +180,7 @@ export default {
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 3fr;
   grid-row-gap: 1rem;
-  background: #F4F7F6;
+   background: #FCFCFC 0% 0% no-repeat padding-box;
   padding: 2rem 1.5rem;
   height: auto;
 }

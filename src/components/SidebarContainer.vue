@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <div id="mySidebar" class="sidebar">
+  <div class="container " >
+    <div id="mySidebar" :class="expandedBar">
         <div class="aside-menu">
             <div class="menu-btn"> 
            
@@ -8,7 +8,8 @@
               <a href="javascript:void(0)" class="closebtn" v-on:click="openNav($event)"><img src="../assets/menu-open.svg" class="menu-img"/></a>
             
               </div>
-     <div class="sidebar-menu">
+              <div class="aside-flex">
+     <div class="sidebar-menu ">
         <div class="sidebar-item">
           <div class="sidebar-img"><img src="../assets/menu-icon.svg"/></div>
           <div class="sidebar-label"><a href="#">Dashboard</a>
@@ -38,6 +39,7 @@
           </div>
  
      </div>
+        </div>
 
       <div class="setting">
                   <div class="sidebar-item">
@@ -56,24 +58,37 @@ export default {
   data(){
    return {
      gridline: '',
+     isExpanded: true,
+     sidebarCollapsed : 'sidebar',
+     sidebarExpanded : 'sidebar-expanded'
    }
   },
-  methods: {
-    openNav(event) {
-      const sidebar = this.$el.querySelector("#mySidebar");
-       sidebar.style.width = "250px";
-      const main = this.$el.querySelector("#main");
-      main.style.marginLeft = "250px";
 
-      const bkg = this.$el.querySelector(".sidebar")
-      bkg.style.backround = "blue"
-        this.$emit("openNav", "");
-          console.log('message emit from child component')
+computed :{
+  expandedBar(){
+    return this.isExpanded ? 'sidebar' : 'sidebar-expanded';
+  }
+},
+
+  methods: {
+    openNav() {
+      // const sidebar = this.$el.querySelector(".sidebar");
+      //  sidebar.style.width = "250px";
+      // const main = this.$el.querySelector("#main");
+      // main.style.marginLeft = "250px";
+      // this.$emit("isClicked")
+
+      // const bkg = this.$el.querySelector(".sidebar")
+      // bkg.style.backround = "blue"
+      //   this.$emit("openNav", "");
+      //     console.log('message emit from child component')
+      this.$emit("isClicked")
+        this.isExpanded = !this.isExpanded;
     },
 
     /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
     closeNav() {
-     this.$el.querySelector("#mySidebar").style.width = "0";
+     this.$el.querySelector(".sidebar").style.width = "0";
       this.$el.querySelector("#main").style.marginLeft = "0";
     }
   }
@@ -84,6 +99,24 @@ export default {
 .sidebar {
   height: 100%; /* 100% Full-height */
   width: 50px; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  left: 0;
+  background-color: #007AFE; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+    -webkit-box-shadow: 2px 1px 30px #ADADAD !important;
+  -moz-box-shadow:  2px 1px 30px #ADADAD !important;
+  box-shadow:  2px 1px 30px  #ADADAD !important;
+  z-index: 1;
+  padding: 1rem;
+}
+
+.sidebar-expanded {
+  height: 100%; /* 100% Full-height */
+  width: 250px; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
   z-index: 1; /* Stay on top */
   top: 0;
@@ -153,6 +186,11 @@ export default {
   }
 }
 
+.aside-flex{
+  display: flex;
+  justify-content: center;
+  align-self: center
+}
 .aside-menu{
     display: grid;
     grid-template-columns: 1fr;
@@ -167,6 +205,15 @@ export default {
   grid-column-gap: 10px;
   padding: 0.5rem;
   margin-top: 1%;
+  
+}
+
+.sidebar-item:hover{
+    color: #fff;
+  background: rgb(9, 75, 146);
+  /* margin-left: -20%;
+  margin-right: -20%; */
+  /* padding-left:4%; */
   
 }
 .sidebar-img{
@@ -192,12 +239,12 @@ padding: 12px;
 
 .sidebar-img img:hover{
 background: #E9ECF4;
-padding: 12px;
+/* padding: 12px; */
 border-radius: 50%;
 
 }
 .sidebar-label{
-  border-bottom: 1px solid #999;
+  border-bottom: 1px solid rgb(9, 61, 129) 0% 0% no-repeat padding-box;
   font-size: 13px;
 
 }
@@ -205,11 +252,11 @@ border-radius: 50%;
    font-size: 15px;
   color: #fff;
 }
-.sidebar-label a:hover{
+/* .sidebar-label a:hover{
   font-size: 15px;
   color: #fff;
   background: #007AFE;
-}
+} */
 
 .setting > .sidebar-item > .sidebar-label{
    border:none;
