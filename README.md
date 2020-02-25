@@ -1,5 +1,9 @@
 # Same Custom Day 
 
+```
+The Project practically completed but requires finishing touches
+```
+
 A simple product delivery app to display product and show order details. 
 
 ## Purpose
